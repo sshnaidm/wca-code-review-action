@@ -59,7 +59,7 @@ runs:
           echo "$AI_REVIEW_PROMPT" > ai_review_prompt.txt
           SCRIPT_ARGS="$SCRIPT_ARGS --prompt-file ai_review_prompt.txt"
         fi
-        CONTEXT_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | tr '\n' ',' | sed 's/,$//'))
+        CONTEXT_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | tr '\n' ',' | sed 's/,$//')
         if [ -n "$CONTEXT_FILES" ] && [ "$AI_ADD_FILES" = "true" ]; then
           SCRIPT_ARGS="$SCRIPT_ARGS --context-files $CONTEXT_FILES"
         fi

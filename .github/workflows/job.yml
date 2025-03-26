@@ -10,6 +10,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./
         with:
-          wca-key: ${{ secrets.WCA_API_KEY }}
+          wca-key: ${{ secrets.IAM_APIKEY }}
           # context-lines: 20  # optional
           # prompt: 'You are helpful assistant is here to review the code. Please review the code change below and provide feedback.'

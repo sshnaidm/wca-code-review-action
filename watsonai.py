@@ -98,10 +98,16 @@ def call(
     return response.json()
 
 
-def build_prompt_paylod(text):
+def build_prompt_payload(text):
+    # The API expects the content field to be a string, not a list of dicts.
+    # If text is a list, convert it to a JSON string.
+    if isinstance(text, list):
+        content_str = json.dumps(text)
+    else:
+        content_str = text
     payload = {
         "message_payload": {
-            "messages": [{"content": text, "role": "USER"}],
+            "messages": [{"content": content_str, "role": "USER"}],
         }
     }
     payload_json = json.dumps(payload)
@@ -111,7 +117,7 @@ def build_prompt_paylod(text):
 
 def call_api(prompt_str, source_files=None):
     response = call(
-        build_prompt_paylod(prompt_str),
+        build_prompt_payload(prompt_str),
         apikey=IAM_APIKEY_ENV_PROPERTY,
         file_list=source_files,
     )

@@ -9,16 +9,16 @@ This is a simple proxy server that allows you to use IBM Watson Code Assistant a
 
 ## Installation
 
-1. Clone this repository: `git clone https://github.com/sshnaidm/watson-ai-openai-proxy.git`
+1. Clone this repository: `git clone https://github.com/sshnaidm/wca-code-review-action`
 2. Install the required Python packages: `pip install -r proxy-requirements.txt`
 3. Set your IBM Watson Code Assistant API key as an environment variable: `export IAM_APIKEY=your_api_key`
 
-Default model name is `watson-ai`.
+Default model name is `watson-ai`. API key (OpenAI key) in model parameters can be any non-empty string.
 
 ## Usage
 
 1. Export your IBM Watson Code Assistant API key as an environment variable: `export IAM_APIKEY=your_api_key`
-2. Run the proxy server: `python watson_openai_proxy.py`
-   a. If you want to change host or port, use `flask` command:  `flask --app watson_openai_proxy run --host=0.0.0.0 --port=5555`
+2. Run the proxy server: `python watson_openai_proxy.py`.
+   1. If you want to change host or port, use `flask` command:  `flask --app watson_openai_proxy run --host=0.0.0.0 --port=5555`
 3. Use the proxy server as an OpenAI API endpoint. For example, in LangChain: `llm = ChatOpenAI(base_url="http://localhost:5000/v1", model="watson-ai", api_key="111")`
 4. Use API of this proxy server in OpenWebUI as `http://localhost:5000/v1`

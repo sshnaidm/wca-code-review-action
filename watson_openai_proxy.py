@@ -11,6 +11,21 @@ DEFAULT_MODEL = "watson-ai"
 WATSON_API_KEY = os.environ.get("IAM_APIKEY")
 
 
+def convert_messages_to_prompt(messages):
+    prompt_parts = []
+    for msg in messages:
+        role = msg["role"]
+        content = msg["content"]
+        if role == "system":
+            prompt_parts.append(f"System: {content}")
+        elif role == "user":
+            prompt_parts.append(f"User: {content}")
+        elif role == "assistant":
+            prompt_parts.append(f"Assistant: ##\n{content}\n##")
+    prompt_parts.append("Assistant:")  # Cue for the model to continue
+    return "\n".join(prompt_parts)
+
+
 @app.route('/v1/chat/completions', methods=['POST'])
 def chat_completions():
     # Get request data
@@ -26,9 +41,7 @@ def chat_completions():
     if not user_messages:
         return jsonify({"error": "No user messages provided"}), 400
 
-    # Get the last user message
-    prompt = user_messages[-1]["content"]
-
+    prompt = convert_messages_to_prompt(messages)
     # Get file_list if provided
     file_list = data.get('file_list', None)
 

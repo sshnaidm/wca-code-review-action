@@ -14,15 +14,20 @@ WATSON_API_KEY = os.environ.get("IAM_APIKEY")
 def convert_messages_to_prompt(messages):
     prompt_parts = []
     for msg in messages:
-        role = msg["role"]
-        content = msg["content"]
+        role = msg.get("role")
+        content = msg.get("content", "")
+        if not content:
+            continue  # skip messages with no content (e.g., tool calls)
+
         if role == "system":
             prompt_parts.append(f"System: {content}")
         elif role == "user":
             prompt_parts.append(f"User: {content}")
         elif role == "assistant":
             prompt_parts.append(f"Assistant: ##\n{content}\n##")
-    prompt_parts.append("Assistant:")  # Cue for the model to continue
+        else:
+            prompt_parts.append(f"{role.capitalize()}: {content}")  # fallback
+    prompt_parts.append("Assistant:")
     return "\n".join(prompt_parts)
 
 

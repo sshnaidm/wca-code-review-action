@@ -27,7 +27,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-      - uses: sshnaidm/wca-code-review-action@v1
+      - uses: sshnaidm/wca-code-review-action@v2
         with:
           wca-key: ${{ secrets.IAM_APIKEY }}
 ```
@@ -54,7 +54,7 @@ jobs:
 ### Custom Review Prompt
 
 ```yaml
-- uses: sshnaidm/wca-code-review-action@v1
+- uses: sshnaidm/wca-code-review-action@v2
   with:
     wca-key: ${{ secrets.IAM_APIKEY }}
     prompt: |
@@ -67,7 +67,7 @@ jobs:
 ### Include Additional Context
 
 ```yaml
-- uses: sshnaidm/wca-code-review-action@v1
+- uses: sshnaidm/wca-code-review-action@v2
   with:
     wca-key: ${{ secrets.IAM_APIKEY }}
     add-files: 'true'
@@ -97,4 +97,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 For issues and feature requests, please open an issue in the GitHub repository.
 
-## For Proxy README open [README-proxy.md](README-proxy.md)
+## For OpenAI Proxy for Watson Code Asssistant open [Proxy README](https://github.com/sshnaidm/wca-openai-proxy/blob/master/README.md) in WCA OpenAI proxy repository

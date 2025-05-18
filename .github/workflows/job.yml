@@ -13,3 +13,4 @@ jobs:
           wca-key: ${{ secrets.IAM_APIKEY }}
           # context-lines: 20  # optional
           # prompt: 'You are helpful assistant is here to review the code. Please review the code change below and provide feedback.'
+          # review-title: 'Watson AI Code Review Results'

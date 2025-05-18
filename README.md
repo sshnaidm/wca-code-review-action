@@ -47,6 +47,7 @@ jobs:
 | `post-if-error` | Post comment even if review fails | No | `true` |
 | `context-lines` | Number of context lines in diff | No | `10` |
 | `add-files` | Include all changed files in review | No | `false` |
+| `review-title` | Title of the review comment | No | `Watson Code Review` |
 
 ## Advanced Usage Examples
 
@@ -71,6 +72,7 @@ jobs:
     wca-key: ${{ secrets.IAM_APIKEY }}
     add-files: 'true'
     context-lines: '20'
+    review-title: 'Code Review by Watson AI'
 ```
 
 ## Outputs
